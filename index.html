@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Footer RSVP Berwarna</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer Scroll Section</title>
   <style>
     body {
       margin: 0;
-      padding-bottom: 70px;
+      padding-bottom: 80px;
       font-family: sans-serif;
+      scroll-behavior: smooth; /* smooth scroll effect */
+    }
+
+    section {
+      padding: 60px 20px;
+      border-bottom: 1px solid #ccc;
+      min-height: 300px;
     }
 
     .footer {
@@ -21,153 +28,88 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
       border-top: 1px solid #ddd;
+      z-index: 1000;
     }
 
     .footer-icon {
-      font-size: 24px;
       text-align: center;
+      font-size: 20px;
       cursor: pointer;
-      color: #888;
     }
 
     .footer-icon span {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
     }
 
-    .footer-icon.active {
-      font-weight: bold;
-      color: #2196f3;
-    }
+    /* Warna ikon */
+    .rsvp { color: #e91e63; }
+    .money { color: #4caf50; }
+    .contact { color: #ff9800; }
+    .wishlist { color: #9c27b0; }
+    .location { color: #03a9f4; }
+    .calendar { color: #607d8b; }
   </style>
 </head>
 <body>
 
-  <div class="footer">
-    <div class="footer-icon" onclick="alert('Seksyen RSVP')">
-      💌
-      <span>RSVP</span>
-    </div>
-    <div class="footer-icon" onclick="alert('Seksyen MoneyGift')">
-      💸
-      <span>Money Gift</span>
-    </div>
-    <div class="footer-icon" onclick="alert('Seksyen Wishlist')">
-      🎁
-      <span>Wishlist</span>
-    </div>
-    <div class="footer-icon" onclick="alert('Seksyen Contact')">
-      📞
-      <span>Contact</span>
-    </div>
-    <div class="footer-icon" onclick="alert('Location')">
-      📍
-      <span>Location</span>
-    </div>
+  <!-- Seksyen-seksyen -->
+  <section id="Seksyen RSVP">
+    <h2>💌 RSVP</h2>
+    <p>Isi kehadiran anda di sini.</p>
+  </section>
 
-</body>
-</html>
+  <section id="Seksyen Money Gift">
+    <h2>💸 Money Gift</h2>
+    <p>No akaun dan info sumbangan.</p>
+  </section>
 
+  <section id="Seksyen Contact">
+    <h2>📞 Contact</h2>
+    <p>Hubungi pengantin atau keluarga.</p>
+  </section>
 
-  <!-- Bahagian yang akan muncul -->
-  <div id="Seksyen Wishlist" class="section">
+  <section id="Seksyen Wishlist">
     <h2>🎁 Wishlist</h2>
+    <p>Senarai hadiah pilihan kami.</p>
+  </section>
 
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wishlist Hadiah Kahwin</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      padding: 20px;
-    }
-    .gift-item {
-      background: #ffffff;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-    }
-    .gift-item img {
-      width: 80px;
-      height: auto;
-      margin-right: 15px;
-      border-radius: 5px;
-    }
-    .gift-info {
-      flex: 1;
-    }
-    .gift-title {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    .btn {
-      padding: 6px 12px;
-      border: none;
-      border-radius: 6px;
-      margin-right: 5px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    .btn-tempah {
-      background-color: #007bff;
-      color: white;
-    }
-    .btn-telah {
-      background-color: #28a745;
-      color: white;
-      cursor: default;
-    }
-    .btn-link {
-      background-color: #6c757d;
-      color: white;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
+  <section id="Seksyen Location">
+    <h2>📍 Lokasi</h2>
+    <p>Lokasi majlis diadakan.</p>
+  </section>
 
- <div class="gift-item">
-    <img src="WhatsApp Image 2025-05-17 at 11.20.19 PM.jpeg" alt="Set Cadar">
-    <div class="gift-info">
-      <div class="gift-title">Set Cadar</div>
-      <a href="https://s.shopee.com.my/7fNH3P2qHp" class="btn btn-link" target="_blank">🔗 Link Item Shopee</a>
-      <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
+  
+
+  
+  <!-- Footer Sticky -->
+  <div class="footer">
+    <div class="footer-icon rsvp" onclick="toggleSection('Seksyen RSVP')">
+      💌 <span>RSVP</span>
+    </div>
+    <div class="footer-icon money" onclick="toggleSection('Seksyen Money Gift')">
+      💸 <span>Gift</span>
+    </div>
+    <div class="footer-icon wishlist" onclick="toggleSection('Seksyen Wishlist')">
+      🎁 <span>Wishlist</span>
+    </div>
+    <div class="footer-icon contact" onclick="toggleSection('Seksyen Contact')">
+      📞 <span>Contact</span>
+    </div>
+    <div class="footer-icon location" onclick="toggleSection('Seksyen Location')">
+      📍 <span>Lokasi</span>
     </div>
   </div>
 
-  <div class="gift-item">
-    <img src="https://via.placeholder.com/80" alt="Iron">
-    <div class="gift-info">
-      <div class="gift-title">Philips Steam Iron</div>
-      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Item Shopee</a>
-      <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
-    </div>
-  </div>
-
-  <div class="gift-item">
-    <img src="https://via.placeholder.com/80" alt="Blender">
-    <div class="gift-info">
-      <div class="gift-title">Tefal Blender BL2B01</div>
-      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Item Shopee</a>
-      <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
-    </div>
-  </div>
-
+  <!-- JavaScript Scroll Function -->
   <script>
-    function tempah(button) {
-      button.innerText = '✔ Telah Ditempah';
-      button.classList.remove('btn-tempah');
-      button.classList.add('btn-telah');
-      button.disabled = true;
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }
   </script>
 
