@@ -56,8 +56,46 @@
 <body>
 
   <!-- Seksyen-seksyen -->
-  <section id="Seksyen RSVP">
+    <section id="Seksyen RSVP" class="active">
     <h2>💌 RSVP</h2>
+      <form>
+        <input type="text" placeholder="Nama Anda" required>
+            <label>
+      <input type="radio" name="attendance" value="Hadir" required>
+      Hadir
+    </label>
+    <label>
+      <input type="radio" name="attendance" value="Tidak Hadir">
+      Tidak Hadir
+    </label><br><br>
+        <label for="jumlah">Bilangan Kehadiran</label><br>
+  <input type="number" id="jumlah" name="jumlah" min="1"><br><br>
+
+        <button type="submit">Hantar</button>
+      </form>
+    </section>
+
+
+
+
+  <section id="Seksyen Money Gift">
+    <h2>💸 Money Gift</h2>
+     <p><strong>Nama Bank :</strong> Maybank Berhad</p>
+     <p><strong>Nama :</strong> Muhammad Haikal Bin Zulkefli</p>
+     <p><strong>Nombor Akaun: <span id="rek">1234567890</span></p>
+      <button onclick="copyRek()">Copy</button>
+        <p>Imbas kod QR di bawah</p>
+        <img src="qr-code.jpeg" alt="Kod QR">
+  <section id="Seksyen Contact">
+    <h2>📞 Contact</h2>
+    <p>Hubungi pengantin atau keluarga.</p>
+  </section>
+
+
+
+    
+  <section id="Seksyen Wishlist">
+    <h2>🎁 Wishlist</h2>
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -122,7 +160,7 @@
     <img src="WhatsApp Image 2025-05-17 at 11.20.19 PM.jpeg" alt="Set Cadar">
     <div class="gift-info">
       <div class="gift-title">Set Cadar</div>
-      <a href="https://s.shopee.com.my/7fNH3P2qHp" class="btn btn-link" target="_blank">🔗 Link Item Shopee</a>
+      <a href="https://s.shopee.com.my/7fNH3P2qHp" class="btn btn-link" target="_blank">🔗 Link Shopee</a>
       <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
     </div>
   </div>
@@ -131,7 +169,7 @@
     <img src="https://via.placeholder.com/80" alt="Iron">
     <div class="gift-info">
       <div class="gift-title">Philips Steam Iron</div>
-      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Item Shopee</a>
+      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Shopee</a>
       <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
     </div>
   </div>
@@ -140,7 +178,7 @@
     <img src="https://via.placeholder.com/80" alt="Blender">
     <div class="gift-info">
       <div class="gift-title">Tefal Blender BL2B01</div>
-      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Item Shopee</a>
+      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Shopee</a>
       <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
     </div>
   </div>
@@ -159,42 +197,28 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  <section id="Seksyen Money Gift">
-    <h2>💸 Money Gift</h2>
-    <p>No akaun dan info sumbangan.</p>
-  </section>
-
-  <section id="Seksyen Contact">
+    
+   <section id="Seksyen Contact">
     <h2>📞 Contact</h2>
-    <p>Hubungi pengantin atau keluarga.</p>
+    <p>
+      <i class="fas fa-phone-alt"></i> <a href="tel:+60198813267">+6019-8813267</a><br>
+      <i class="fas fa-phone-alt"></i> <a href="tel:+601157265723">+6011-57265723</a><br>
+    </p>
   </section>
 
-  <section id="Seksyen Wishlist">
-    <h2>🎁 Wishlist</h2>
-    <p>Senarai hadiah pilihan kami.</p>
-  </section>
 
-  <section id="Seksyen Location">
+
+    
+    <section id="Seksyen Location">
     <h2>📍 Lokasi</h2>
-    <p>Lokasi majlis diadakan.</p>
+      Dewan Bandar Behrang 2020<br>
+      <a class="button" href="https://maps.app.goo.gl/KYZcM4NcTKrCdBi78?g_st=aw" target="_blank">Google Maps</a>
+    </p>
+          <a class="button" href="https://waze.com/ul/hw28jjnfyr" target="_blank">Waze</a>
+    </p>
   </section>
 
-  
+    
 
   
   <!-- Footer Sticky -->
