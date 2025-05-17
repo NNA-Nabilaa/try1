@@ -50,19 +50,26 @@
 <body>
 
   <div class="footer">
-    <div class="footer-icon rsvp" onclick="alert('RSVP ditekan')">
+    <div class="footer-icon" onclick="alert('Seksyen RSVP')">
       💌
       <span>RSVP</span>
     </div>
-    <div class="footer-icon" onclick="alert('Wishlist')">
-      🎁
+        <div class="footer-icon" onclick="alert('Seksyen MoneyGift')">
+      💌
+      <span>Money Gift</span>
+    </div>
+    <div class="footer-icon" onclick="toggleSection('Seksyen Wishlist')">
+      💸
       <span>Wishlist</span>
     </div>
-    <div class="footer-icon" onclick="alert('Lokasi')">
-      📍
-      <span>Lokasi</span>
+    <div class="footer-icon" onclick="toggleSection('Seksyen Contact')">
+      📞
+      <span>Contact</span>
     </div>
-  </div>
+    <div class="footer-icon" onclick="alert('Location')">
+      📍
+      <span>Location</span>
+    </div>
 
 </body>
 </html>
