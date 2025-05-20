@@ -1,74 +1,68 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8" />
-  <title>Halaman Ucapan</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    #messages { margin-top: 20px; }
-    .message { border-bottom: 1px solid #ccc; padding: 10px 0; }
-  </style>
+<meta charset="UTF-8" />
+<title>Ucapan Kahwin</title>
 </head>
 <body>
 
 <h1>Hantar Ucapan</h1>
-<input id="nama" type="text" placeholder="Nama anda" /><br /><br />
-<textarea id="ucapanInput" rows="4" cols="50" placeholder="Tulis ucapan anda di sini..."></textarea><br />
+<input id="nama" placeholder="Nama anda" /><br /><br />
+<textarea id="ucapanInput" rows="4" cols="50" placeholder="Tulis ucapan anda..."></textarea><br />
 <button id="hantarBtn">Hantar</button>
 
-<div id="messages">
-  <h2>Ucapan Terkini</h2>
-  <div id="messagesList"></div>
-</div>
+<h2>Ucapan Terkini</h2>
+<div id="messagesList"></div>
 
 <script>
-  const hantarBtn = document.getElementById('hantarBtn');
-  const ucapanInput = document.getElementById('ucapanInput');
-  const namaInput = document.getElementById('nama');
-  const messagesList = document.getElementById('messagesList');
+const API_URL = 'https://sheetdb.io/api/v1/6xh4arpghtu6e';
 
-  const SCRIPT_URL = 'https://script.google.com/macros/library/d/1OABBbAre0FvQ71LR1p5iVJoz3clqu6tXIiKqSN-rcJXHQ7RcJwdr0Y7u/1';
-
-  function loadMessages() {
-    fetch(SCRIPT_URL)
-      .then(res => res.json())
-      .then(data => {
-        messagesList.innerHTML = '';
-        data.reverse().forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'message';
-          div.innerHTML = `<strong>${item.nama}</strong>: ${item.ucapan}`;
-          messagesList.appendChild(div);
-        });
+function loadMessages() {
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+      const messagesList = document.getElementById('messagesList');
+      messagesList.innerHTML = '';
+      data.forEach(item => {
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${item.nama}</strong>: ${item.ucapan}`;
+        messagesList.appendChild(div);
       });
+    });
+}
+
+document.getElementById('hantarBtn').addEventListener('click', () => {
+  const nama = document.getElementById('nama').value.trim();
+  const ucapan = document.getElementById('ucapanInput').value.trim();
+  if (!nama || !ucapan) {
+    alert('Sila isi nama dan ucapan');
+    return;
   }
 
-  hantarBtn.addEventListener('click', () => {
-    const ucapan = ucapanInput.value.trim();
-    const nama = namaInput.value.trim();
-    if (!nama || !ucapan) {
-      alert('Sila isi nama dan ucapan.');
-      return;
-    }
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ nama, ucapan }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.result === 'success') {
-        ucapanInput.value = '';
-        namaInput.value = '';
-        loadMessages();
-      } else {
-        alert('Gagal hantar ucapan.');
+  fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: {
+        nama: nama,
+        ucapan: ucapan,
+        timestamp: new Date().toISOString()
       }
-    });
+    })
+  })
+  .then(res => res.json())
+  .then(() => {
+    document.getElementById('nama').value = '';
+    document.getElementById('ucapanInput').value = '';
+    loadMessages();
+  })
+  .catch(err => {
+    alert('Gagal hantar ucapan');
+    console.error(err);
   });
+});
 
-  loadMessages();
+loadMessages();
 </script>
 
 </body>
