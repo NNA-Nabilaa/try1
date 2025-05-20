@@ -1,252 +1,75 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Footer Scroll Section</title>
+  <meta charset="UTF-8" />
+  <title>Halaman Ucapan</title>
   <style>
-    body {
-      margin: 0;
-      padding-bottom: 80px;
-      font-family: sans-serif;
-      scroll-behavior: smooth; /* smooth scroll effect */
-    }
-
-    section {
-      padding: 60px 20px;
-      border-bottom: 1px solid #ccc;
-      min-height: 300px;
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
-      border-top: 1px solid #ddd;
-      z-index: 1000;
-    }
-
-    .footer-icon {
-      text-align: center;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .footer-icon span {
-      display: block;
-      font-size: 11px;
-    }
-
-    /* Warna ikon */
-    .rsvp { color: #e91e63; }
-    .money { color: #4caf50; }
-    .contact { color: #ff9800; }
-    .wishlist { color: #9c27b0; }
-    .location { color: #03a9f4; }
-    .calendar { color: #607d8b; }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #messages { margin-top: 20px; }
+    .message { border-bottom: 1px solid #ccc; padding: 10px 0; }
   </style>
 </head>
 <body>
 
-  <!-- Seksyen-seksyen -->
-    <section id="Seksyen RSVP" class="active">
-    <h2>💌 RSVP</h2>
-      <form>
-        <input type="text" placeholder="Nama Anda" required>
-            <label>
-      <input type="radio" name="attendance" value="Hadir" required>
-      Hadir
-    </label>
-    <label>
-      <input type="radio" name="attendance" value="Tidak Hadir">
-      Tidak Hadir
-    </label><br><br>
-        <label for="jumlah">Bilangan Kehadiran</label><br>
-  <input type="number" id="jumlah" name="jumlah" min="1"><br><br>
+<h1>Hantar Ucapan</h1>
+<input id="nama" type="text" placeholder="Nama anda" /><br /><br />
+<textarea id="ucapanInput" rows="4" cols="50" placeholder="Tulis ucapan anda di sini..."></textarea><br />
+<button id="hantarBtn">Hantar</button>
 
-        <button type="submit">Hantar</button>
-      </form>
-    </section>
+<div id="messages">
+  <h2>Ucapan Terkini</h2>
+  <div id="messagesList"></div>
+</div>
 
+<script>
+  const hantarBtn = document.getElementById('hantarBtn');
+  const ucapanInput = document.getElementById('ucapanInput');
+  const namaInput = document.getElementById('nama');
+  const messagesList = document.getElementById('messagesList');
 
+  const SCRIPT_URL = 'https://script.google.com/macros/library/d/1OABBbAre0FvQ71LR1p5iVJoz3clqu6tXIiKqSN-rcJXHQ7RcJwdr0Y7u/1';
 
+  function loadMessages() {
+    fetch(SCRIPT_URL)
+      .then(res => res.json())
+      .then(data => {
+        messagesList.innerHTML = '';
+        data.reverse().forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'message';
+          div.innerHTML = `<strong>${item.nama}</strong>: ${item.ucapan}`;
+          messagesList.appendChild(div);
+        });
+      });
+  }
 
-  <section id="Seksyen Money Gift">
-    <h2>💸 Money Gift</h2>
-     <p><strong>Nama Bank :</strong> Maybank Berhad</p>
-     <p><strong>Nama :</strong> Muhammad Haikal Bin Zulkefli</p>
-     <p><strong>Nombor Akaun: <span id="rek">1234567890</span></p>
-      <button onclick="copyRek()">Copy</button>
-        <p>Imbas kod QR di bawah</p>
-        <img src="qr-code.jpeg" alt="Kod QR">
-  </section>
-
-
-
-    
-  <section id="Seksyen Wishlist">
-    <h2>🎁 Wishlist</h2>
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wishlist Hadiah Kahwin</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      padding: 20px;
+  hantarBtn.addEventListener('click', () => {
+    const ucapan = ucapanInput.value.trim();
+    const nama = namaInput.value.trim();
+    if (!nama || !ucapan) {
+      alert('Sila isi nama dan ucapan.');
+      return;
     }
-    .gift-item {
-      background: #ffffff;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-    }
-    .gift-item img {
-      width: 80px;
-      height: auto;
-      margin-right: 15px;
-      border-radius: 5px;
-    }
-    .gift-info {
-      flex: 1;
-    }
-    .gift-title {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    .btn {
-      padding: 6px 12px;
-      border: none;
-      border-radius: 6px;
-      margin-right: 5px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    .btn-tempah {
-      background-color: #007bff;
-      color: white;
-    }
-    .btn-telah {
-      background-color: #28a745;
-      color: white;
-      cursor: default;
-    }
-    .btn-link {
-      background-color: #6c757d;
-      color: white;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
 
- <div class="gift-item">
-    <img src="WhatsApp Image 2025-05-17 at 11.20.19 PM.jpeg" alt="Set Cadar">
-    <div class="gift-info">
-      <div class="gift-title">Set Cadar</div>
-      <a href="https://s.shopee.com.my/7fNH3P2qHp" class="btn btn-link" target="_blank">🔗 Link Shopee</a>
-      <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
-    </div>
-  </div>
-
-  <div class="gift-item">
-    <img src="https://via.placeholder.com/80" alt="Iron">
-    <div class="gift-info">
-      <div class="gift-title">Philips Steam Iron</div>
-      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Shopee</a>
-      <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
-    </div>
-  </div>
-
-  <div class="gift-item">
-    <img src="https://via.placeholder.com/80" alt="Blender">
-    <div class="gift-info">
-      <div class="gift-title">Tefal Blender BL2B01</div>
-      <a href="https://shopee.com" class="btn btn-link" target="_blank">🔗 Link Shopee</a>
-      <button class="btn btn-tempah" onclick="tempah(this)">Tempah</button>
-    </div>
-  </div>
-
-  <script>
-    function tempah(button) {
-      button.innerText = '✔ Telah Ditempah';
-      button.classList.remove('btn-tempah');
-      button.classList.add('btn-telah');
-      button.disabled = true;
-    }
-  </script>
-
-</body>
-</html>
-  </section>
-
-
-
-  
-   <section id="Seksyen Contact">
-    <h2>📞 Contact</h2>
-    <p>
-      <i class="fas fa-phone-alt"></i> <a href="tel:+60198813267">+6019-8813267</a><br>
-      <i class="fas fa-phone-alt"></i> <a href="tel:+601157265723">+6011-57265723</a><br>
-    </p>
-  </section>
-
-
-
-    
-    <section id="Seksyen Location">
-    <h2>📍 Lokasi</h2>
-      Dewan Bandar Behrang 2020<br>
-      <a class="button" href="https://maps.app.goo.gl/KYZcM4NcTKrCdBi78?g_st=aw" target="_blank">Google Maps</a>
-    </p>
-          <a class="button" href="https://waze.com/ul/hw28jjnfyr" target="_blank">Waze</a>
-    </p>
-  </section>
-
-    
-
-  
-  <!-- Footer Sticky -->
-  <div class="footer">
-    <div class="footer-icon rsvp" onclick="toggleSection('Seksyen RSVP')">
-      💌 <span>RSVP</span>
-    </div>
-    <div class="footer-icon money" onclick="toggleSection('Seksyen Money Gift')">
-      💸 <span>Gift</span>
-    </div>
-    <div class="footer-icon wishlist" onclick="toggleSection('Seksyen Wishlist')">
-      🎁 <span>Wishlist</span>
-    </div>
-    <div class="footer-icon contact" onclick="toggleSection('Seksyen Contact')">
-      📞 <span>Contact</span>
-    </div>
-    <div class="footer-icon location" onclick="toggleSection('Seksyen Location')">
-      📍 <span>Lokasi</span>
-    </div>
-  </div>
-
-  <!-- JavaScript Scroll Function -->
-  <script>
-    function toggleSection(id) {
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ nama, ucapan }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.result === 'success') {
+        ucapanInput.value = '';
+        namaInput.value = '';
+        loadMessages();
+      } else {
+        alert('Gagal hantar ucapan.');
       }
-    }
-  </script>
+    });
+  });
+
+  loadMessages();
+</script>
 
 </body>
 </html>
